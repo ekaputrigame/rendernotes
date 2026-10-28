@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eka Game Notes — storage speed on a mid-range Android</title>
+<meta name="description" content="Timing internal storage against a microSD card on one mid-range Android phone, and what the loading bar actually measures.">
+<style>
+  :root { --paper:#fbf7ef; --ink:#241f1a; --mulet:#8a2f2f; --rule:#ddd3c2; }
+  body { margin:0; background:var(--paper); color:var(--ink);
+         font:17px/1.66 Georgia, "Times New Roman", serif; }
+  .wrap { max-width:44rem; margin:0 auto; padding:3.5rem 1.4rem 4rem; }
+  .kicker { font:600 .72rem/1.4 "Helvetica Neue", Arial, sans-serif;
+            letter-spacing:.22em; text-transform:uppercase; color:var(--mulet); }
+  h1 { font-size:2.05rem; line-height:1.18; margin:.55rem 0 .35rem; font-weight:400; }
+  .byline { font:.86rem/1.5 "Helvetica Neue", Arial, sans-serif; color:#6b6055;
+            border-bottom:1px solid var(--rule); padding-bottom:1.15rem; }
+  p { margin:1.1rem 0; }
+  .lead::first-letter { font-size:3.1rem; float:left; line-height:.86;
+                        padding:.18rem .42rem 0 0; color:var(--mulet); }
+  table { width:100%; border-collapse:collapse; margin:1.6rem 0;
+          font:.88rem/1.45 "Helvetica Neue", Arial, sans-serif; }
+  caption { text-align:left; font-style:italic; color:#6b6055; padding-bottom:.5rem; }
+  th, td { text-align:left; padding:.5rem .35rem; border-bottom:1px solid var(--rule); }
+  th { font-weight:600; letter-spacing:.03em; }
+  td.n { text-align:right; font-variant-numeric:tabular-nums; }
+  .box { border-left:3px solid var(--mulet); padding:.1rem 0 .1rem 1rem; color:#4a4138; }
+  a { color:var(--mulet); text-decoration:underline; text-underline-offset:2px; }
+  footer { margin-top:2.4rem; padding-top:1rem; border-top:1px solid var(--rule);
+           font:.82rem/1.5 "Helvetica Neue", Arial, sans-serif; color:#6b6055; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="kicker">Field notes · Jakarta</p>
+  <h1>Storage speed shows up before the loading bar moves</h1>
+  <p class="byline">Eka Putri · 28 October 2026 · 4-minute read</p>
+
+  <p class="lead">When my phone started taking forty seconds to reach a game lobby, I blamed the chipset. It was not the chipset. I copied the same three games to internal storage and to a microSD card, then timed the stages by hand.</p>
+
+  <table>
+    <caption>Same 2022 mid-range phone, same games, two places to store them.</caption>
+    <thead>
+      <tr><th>Stage</th><th class="n">Internal</th><th class="n">microSD</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Cold app launch</td><td class="n">9 s</td><td class="n">18 s</td></tr>
+      <tr><td>First level load</td><td class="n">12 s</td><td class="n">31 s</td></tr>
+      <tr><td>Texture pop-in after spawn</td><td class="n">rare</td><td class="n">constant</td></tr>
+    </tbody>
+  </table>
+
+  <p>The card was not broken. It was simply slow at the thing games actually do: thousands of small random reads, not one big sequential copy. A card advertising 92 MB/s sequential read still stalls when the engine asks for four kilobytes at a time across a thousand files.</p>
+
+  <p>Two things fixed most of it for me. Keep at least fifteen percent of internal storage free, because a full flash chip has nowhere to shuffle data and writes get slower. And move only screenshots and music to the card, never installed games.</p>
+
+  <p class="box">If a game is slow to load on a phone that still plays it smoothly once you are inside, look at storage before you look at the processor.</p>
+
+  <p>I keep the longer version of these measurements, plus the boring notes on how I time each run, over at <a href="https://ekagamenotes.blogspot.com">my game notes</a>.</p>
+
+  <footer>Written on a phone, mostly on a bus.</footer>
+</main>
+</body>
+</html>
